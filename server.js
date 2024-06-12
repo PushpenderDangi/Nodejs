@@ -1,5 +1,6 @@
 const express = require("express");
 const errorHandler = require("./middleware/errorhandler");
+const connectDb = require("./config/dbConnect");
 const dotenv = require("dotenv").config();
 
 const app = express()
@@ -9,6 +10,7 @@ app.use(express.json()) // this middleware is used because the data to be parse 
 app.use('/api/contacts', require('./routes/contactRoutes'));
 app.use(errorHandler)
 
+connectDb();
 app.listen(port, () => {
     console.log(`Server is listening at ${port}`)
 });
