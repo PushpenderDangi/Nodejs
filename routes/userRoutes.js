@@ -1,16 +1,13 @@
 const express = require('express')
+const { registerUser, loginUser, currentUser } = require('../controllers/userController')
 
 const router = express.Router()
 
-router.post('/register', (req,resp) =>{
-    resp.status(200).json({message: "User registerd successfully"})
-})
+router.post('/register', registerUser)
 
-router.post('/login', (req,resp) => {
-    resp.status(200).json({message: "User login successfully"})
-})
+router.post('/login', loginUser)
 
-// this is for the status of the current user i.e who is the current user
-router.post('/current', (req,resp) => {
-    resp.json({message: "Current user information"})
-})
+// this is for information of the current user i.e who is the current user
+router.get('/current', currentUser)
+
+module.exports = router
